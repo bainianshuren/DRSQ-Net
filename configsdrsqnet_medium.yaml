@@ -1,0 +1,37 @@
+# DRSQ-Net Medium Configuration (8.7M parameters)
+model:
+  name: "DRSQ-Net-Medium"
+  version: "medium"
+  num_classes: 4
+  num_queries: 150
+  feature_dim: 384
+  
+  # DPR Module
+  dpr:
+    hidden_dim: 96
+    num_res_blocks: 4
+    gamma_range: [0.8, 1.2]
+  
+  # LGC-Former
+  lgc_former:
+    local_dim: 384
+    global_dim: 384
+    mamba_dim: 768
+    gate_dim: 96
+    num_dynamic_kernels: 48
+  
+  # DSQ-Head
+  dsq_head:
+    num_heads: 8
+    dropout: 0.1
+    hidden_dim: 192
+
+training:
+  epochs: 300
+  batch_size: 12
+  optimizer:
+    lr: 0.008
+    momentum: 0.937
+    weight_decay: 0.0005
+
+# Other sections same as small version

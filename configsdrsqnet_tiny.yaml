@@ -1,0 +1,37 @@
+# DRSQ-Net Tiny Configuration (2.1M parameters)
+model:
+  name: "DRSQ-Net-Tiny"
+  version: "tiny"
+  num_classes: 4
+  num_queries: 80
+  feature_dim: 192
+  
+  # DPR Module
+  dpr:
+    hidden_dim: 48
+    num_res_blocks: 2
+    gamma_range: [0.8, 1.2]
+  
+  # LGC-Former
+  lgc_former:
+    local_dim: 192
+    global_dim: 192
+    mamba_dim: 384
+    gate_dim: 48
+    num_dynamic_kernels: 24
+  
+  # DSQ-Head
+  dsq_head:
+    num_heads: 4
+    dropout: 0.1
+    hidden_dim: 96
+
+training:
+  epochs: 300
+  batch_size: 32
+  optimizer:
+    lr: 0.012
+    momentum: 0.937
+    weight_decay: 0.0005
+
+# Other sections same as small version

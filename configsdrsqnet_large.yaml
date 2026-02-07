@@ -1,0 +1,37 @@
+# DRSQ-Net Large Configuration (16.3M parameters)
+model:
+  name: "DRSQ-Net-Large"
+  version: "large"
+  num_classes: 4
+  num_queries: 200
+  feature_dim: 512
+  
+  # DPR Module
+  dpr:
+    hidden_dim: 128
+    num_res_blocks: 5
+    gamma_range: [0.8, 1.2]
+  
+  # LGC-Former
+  lgc_former:
+    local_dim: 512
+    global_dim: 512
+    mamba_dim: 1024
+    gate_dim: 128
+    num_dynamic_kernels: 64
+  
+  # DSQ-Head
+  dsq_head:
+    num_heads: 8
+    dropout: 0.1
+    hidden_dim: 256
+
+training:
+  epochs: 300
+  batch_size: 8
+  optimizer:
+    lr: 0.006
+    momentum: 0.937
+    weight_decay: 0.0005
+
+# Other sections same as small version
